@@ -1,0 +1,74 @@
+server_url: https://192.168.0.130:6443
+token: harvester-cluster
+os:
+  ssh_authorized_keys:
+    - github:antoniolago  
+  write_files:
+    - path: /var/lib/rancher/k3s/server/manifests/lowend-patches.yaml
+      permissions: 0644
+      owner: root
+      content: |
+        # Rancher patch - reduce resource requests
+        apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: rancher
+          namespace: cattle-system
+        spec:
+          template:
+            spec:
+              containers:
+                - name: rancher
+                  resources:
+                    requests:
+                      cpu: "100m"
+                      memory: "256Mi"
+                    limits:
+                      cpu: "500m"
+                      memory: "512Mi"
+        ---
+        # Longhorn manager patch - reduce resource requests
+        apiVersion: apps/v1
+        kind: DaemonSet
+        metadata:
+          name: longhorn-manager
+          namespace: longhorn-system
+        spec:
+          template:
+            spec:
+              containers:
+                - name: longhorn-manager
+                  resources:
+                    requests:
+                      cpu: "50m"
+                      memory: "128Mi"
+                    limits:
+                      cpu: "200m"
+                      memory: "256Mi"
+        ---
+        # Disable CSI snapshot controller (saves resources, UI still works)
+        apiVersion: helm.cattle.io/v1
+        kind: HelmChart
+        metadata:
+          name: harvester-csi-snapshot
+          namespace: kube-system
+        spec:
+          chart: ""
+        ---
+        # Keep Harvester UI, but remove heavy validating webhooks
+        apiVersion: admissionregistration.k8s.io/v1
+        kind: ValidatingWebhookConfiguration
+        metadata:
+          name: longhorn-admission-webhook
+        $patch: delete
+install:
+  mode: create
+  vip: 192.168.0.7
+  harvester:
+    features:
+      # monitoring: false   # disable heavy monitoring stack
+      # fleet: false        # disable Fleet (GitOps)
+    kubelet_args:
+      - "--kube-reserved=cpu=50m,memory=128Mi"
+      - "--system-reserved=cpu=50m,memory=128Mi"
+      - "--eviction-hard=memory.available<50Mi,nodefs.available<2%"
