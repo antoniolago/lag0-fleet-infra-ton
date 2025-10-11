@@ -1,14 +1,13 @@
-### MOVED TO RASP'S OMV DOCKER CAUSE ITS IN LOWER LEVEL OF INFRA
-# apiVersion: kustomize.toolkit.fluxcd.io/v1
-# kind: Kustomization
-# metadata:
-#   name: tailscale-conf
-#   namespace: flux-system
-# spec:
-#   interval: 1m0s
-#   path: ./tailscale-ton-conf
-#   prune: false
-#   force: false
-#   sourceRef:
-#     kind: GitRepository
-#     name: lag0-fleet-manifests-git
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: tailscale-conf
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  path: ./tailscale-ton-conf
+  prune: false
+  force: false
+  sourceRef:
+    kind: GitRepository
+    name: lag0-fleet-manifests-git
