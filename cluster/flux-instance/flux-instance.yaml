@@ -30,7 +30,7 @@ spec:
     networkPolicy: true
     domain: "cluster.local"
   storage:
-    class: "nfs-csi"
+    class: "local-path"
     size: "10Gi"
   commonMetadata:
     labels:
