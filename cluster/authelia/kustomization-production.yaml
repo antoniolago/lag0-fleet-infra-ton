@@ -7,6 +7,7 @@ spec:
   interval: 1m0s
   path: ./authelia
   prune: false
+  suspend: true
   force: false
   sourceRef:
     kind: GitRepository
