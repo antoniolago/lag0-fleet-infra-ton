@@ -8,7 +8,7 @@ spec:
   path: ./gitlab
   prune: false
   force: false
-  suspend: true
+  suspend: false
   sourceRef:
     kind: GitRepository
     name: lag0-fleet-manifests-git
