@@ -7,7 +7,7 @@ spec:
   interval: 1m0s
   path: ./kavita-ton
   prune: false
-  suspend: true
+  suspend: false
   force: false
   sourceRef:
     kind: GitRepository
