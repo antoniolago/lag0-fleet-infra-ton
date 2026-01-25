@@ -1,14 +1,14 @@
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: gitea
-  namespace: flux-system
-spec:
-  interval: 1m0s
-  path: ./gitea
-  prune: false
-  force: false
-  suspend: false
-  sourceRef:
-    kind: GitRepository
-    name: lag0-fleet-manifests-git
+# apiVersion: kustomize.toolkit.fluxcd.io/v1
+# kind: Kustomization
+# metadata:
+#   name: gitea
+#   namespace: flux-system
+# spec:
+#   interval: 1m0s
+#   path: ./gitea
+#   prune: false
+#   force: false
+#   suspend: false
+#   sourceRef:
+#     kind: GitRepository
+#     name: lag0-fleet-manifests-git
