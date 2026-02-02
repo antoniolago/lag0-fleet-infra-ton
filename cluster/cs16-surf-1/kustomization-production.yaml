@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m0s
-  path: ./cs16-surf-1
+  path: ./cs16-surf-1/infra/production
   prune: false
   force: false
   sourceRef:
