@@ -1,0 +1,14 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata: 
+  name: actions-runner-scale-set
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  path: ./actions-runner-scale-set
+  prune: false
+  suspend: false
+  force: false
+  sourceRef:
+    kind: GitRepository
+    name: lag0-fleet-manifests-git
