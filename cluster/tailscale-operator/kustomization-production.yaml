@@ -1,13 +1,16 @@
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: tailscale
-  namespace: flux-system
-spec:
-  interval: 1m0s
-  path: ./tailscale-ton
-  prune: false
-  force: false
-  sourceRef:
-    kind: GitRepository
-    name: lag0-fleet-manifests-git
+# Desabilitado — tailscale-operator removido (RustDesk via MetalLB + NetBird)
+# Mantido como comentário para referência histórica.
+#
+# apiVersion: kustomize.toolkit.fluxcd.io/v1
+# kind: Kustomization
+# metadata:
+#   name: tailscale
+#   namespace: flux-system
+# spec:
+#   interval: 1m0s
+#   path: ./tailscale-ton
+#   prune: false
+#   force: false
+#   sourceRef:
+#     kind: GitRepository
+#     name: lag0-fleet-manifests-git
