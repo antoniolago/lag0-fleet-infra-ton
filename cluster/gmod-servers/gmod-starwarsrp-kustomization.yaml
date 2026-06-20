@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m0s
-  path: ./starwarsrp/infra/production
+  path: ./gmod/starwarsrp/infra/production
   prune: false
   force: false
   sourceRef:
